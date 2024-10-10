@@ -1,0 +1,33 @@
+h1,div {
+    text-align: center;
+    text-decoration: underline 3px black;
+    margin: 15px;
+}
+
+.link{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration:none;
+    text-shadow: none;
+    font-family:monospace;
+    border-color: black;
+    border: 2px solid black;
+    font-size:xx-large ;
+    background-color:khaki;
+}
+
+.link:hover{
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: darkgoldenrod;
+}
+
+body{
+    background-color: lightyellow;
+}
+
+img{
+    width: 15%;
+    border-radius: 50%;
+    border:2px solid black;
+}
