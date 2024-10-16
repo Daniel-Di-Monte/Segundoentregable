@@ -1,62 +1,80 @@
-const materiales= [
-{
-id:1,
-nombre:"Botella porron",
-precio: 500,
-imagen:"./img/primer-plano-botella-cerveza-mano_23-2147919797.jpg"
-},
-{
-id:2,
-nombre:"Barril",
-precio: 2000,
-imagen:"./img/barriles-cerveza-barril-aluminio_1398-2209.jpg"
-},
-{
-id:3,
-nombre:"Chopera",
-precio:10000,
-imagen:"./img/cerveza-barril-filtrada_140725-80.jpg"
-},
-{
-id:4,
-nombre:"Lata",
-precio:200,
-imagen:"./img/markus-spiske-GWWDglyNTik-unsplash.jpg"
+const materiales = [
+    {
+        id: 1,
+        nombre: "Botella porron",
+        precio: 500,
+        imagen: "./img/primer-plano-botella-cerveza-mano_23-2147919797.jpg"
+    },
+    {
+        id: 2,
+        nombre: "Barril",
+        precio: 2000,
+        imagen: "./img/barriles-cerveza-barril-aluminio_1398-2209.jpg"
+    },
+    {
+        id: 3,
+        nombre: "Chopera",
+        precio: 10000,
+        imagen: "./img/cerveza-barril-filtrada_140725-80.jpg"
+    },
+    {
+        id: 4,
+        nombre: "Lata",
+        precio: 200,
+        imagen: "./img/markus-spiske-GWWDglyNTik-unsplash.jpg"
+    }
+];
+
+let bolsadecompras = [];
+
+
+let productosGuardados = localStorage.getItem("productosbolsa");
+if (productosGuardados) {
+    bolsadecompras = JSON.parse(productosGuardados);
 }
-]
 
-let bolsadecompras= []
+let carrito = document.getElementById("Productos");
 
-let carrito= document.getElementById("Productos")
-
-function productos (arraydeproductos) {
+function productos(arraydeproductos) {
     arraydeproductos.forEach(materiales => {
-        const card = document.createElement("div")
-        card.innerHTML=`<h4>${materiales.nombre}<h4>
-        <img src=${materiales.imagen}>
-        <p>Precio:${materiales.precio}$</p>
-        <button class="agregarproducto" id="${materiales.id}"> Agregar </button>`
-        carrito.appendChild(card)
+        const card = document.createElement("div");
+        card.innerHTML = `
+            <h4>${materiales.nombre}</h4>
+            <img src="${materiales.imagen}">
+            <p>Precio: ${materiales.precio}$</p>
+            <button class="agregarproducto" id="${materiales.id}">Agregar</button>
+        `;
+        carrito.appendChild(card);
     });
     agregarAbolsa();
 }
 
-productos(materiales)
+productos(materiales);
 
-function agregarAbolsa () {
-    agregarboton=document.querySelectorAll(".agregarproducto")
-    agregarboton.forEach(button =>{
+function agregarAbolsa() {
+    let agregarboton = document.querySelectorAll(".agregarproducto");
+    agregarboton.forEach(button => {
         button.onclick = (e) => {
-            const productoID= e.currentTarget.id
-            const productoseleccionado=materiales.find(producto=>producto.id == productoID)
-            const productoCarrito = {
-                ...productoseleccionado,
-                idCarrito: Date.now() + productoseleccionado.id
-            }
-            bolsadecompras.push(productoCarrito)
-            console.log(bolsadecompras)
+            const productoID = e.currentTarget.id;
+            const productoseleccionado = materiales.find(producto => producto.id == productoID);
 
-            localStorage.setItem("productosbolsa", JSON.stringify(bolsadecompras))
-        }
-    })
+
+            const existeEnCarrito = bolsadecompras.find(producto => producto.id === productoseleccionado.id);
+
+            if (existeEnCarrito) {
+
+                existeEnCarrito.cantidad++;
+            } else {
+
+                const productoCarrito = {
+                    ...productoseleccionado,
+                    idCarrito: Date.now() + productoseleccionado.id,
+                    cantidad: 1
+                };
+                bolsadecompras.push(productoCarrito);
+            }
+
+            localStorage.setItem("productosbolsa", JSON.stringify(bolsadecompras));
+        };
+    });
 }
