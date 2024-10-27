@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="../Js/bolsa.js"></script>
+    <script defer src="../Js/compra.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Finaliza tu compra :</title>
+</head>
+<body>
+    <form class="formulario">
+        <input type="text" placeholder="Ingrese su apellido" id="apellido" name="apellido">    
+        <input type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre">
+        <input type="number" placeholder="Ingrese su edad" id="edad" name="edad">
+        <textarea id="direccion" placeholder="Ingrese la direccion de entrega" name="direccion" rows="4" cols="50" ></textarea>
+        <label for="forma_pago">Forma de pago:</label>
+        <select id="forma_pago" name="forma_pago">
+            <option value="efectivo">Efectivo</option>
+            <option value="tarjeta">Tarjeta de crédito</option>
+            <option value="transferencia">Transferencia bancaria</option>
+        </select>
+        <div id="bolsadeproductos"></div>
+        <p id="resumen-carrito"></p>
+        <p id="Total"></p>
+        <button type="button" id="botonenviar">Confirmar compra</button>
+        <a href="../index.html">Inicio</a>
+    </form>
+</body>
+</html>

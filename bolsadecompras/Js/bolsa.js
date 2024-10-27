@@ -70,7 +70,19 @@ function renderbolsa(itemsbolsa) {
         });
         totalElement.textContent = `Total: $${total}`;
         localStorage.setItem("productosbolsa", JSON.stringify(itemsbolsa));
+        mostrarResumen(itemsbolsa, total);
     }
+
+    function mostrarResumen(itemsbolsa, total) {
+        const resumenElement = document.getElementById("resumen-carrito");
+        if (itemsbolsa.length === 0) {
+            resumenElement.textContent = "No hay productos en el carrito.";
+        } else {
+            const itemsNombres = itemsbolsa.map(producto => `${producto.nombre} (x${producto.cantidad})`).join(', ');
+            resumenElement.textContent = `Items en el carrito: ${itemsNombres}. Costo total: $${total}.`;
+        }
+    }
+
 
     function eliminarProducto(idProducto) {
         itemsbolsa = itemsbolsa.filter(producto => producto.idCarrito != idProducto);
