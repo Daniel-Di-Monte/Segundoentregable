@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nombre": "Botella porron",
+        "precio": 500,
+        "imagen": "./img/primer-plano-botella-cerveza-mano_23-2147919797.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "Barril",
+        "precio": 2000,
+        "imagen": "./img/barriles-cerveza-barril-aluminio_1398-2209.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "Chopera",
+        "precio": 10000,
+        "imagen": "./img/cerveza-barril-filtrada_140725-80.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "Lata",
+        "precio": 200,
+        "imagen": "./img/markus-spiske-GWWDglyNTik-unsplash.jpg"
+    }
+]

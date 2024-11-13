@@ -1,32 +1,5 @@
-const materiales = [
-    {
-        id: 1,
-        nombre: "Botella porron",
-        precio: 500,
-        imagen: "./img/primer-plano-botella-cerveza-mano_23-2147919797.jpg"
-    },
-    {
-        id: 2,
-        nombre: "Barril",
-        precio: 2000,
-        imagen: "./img/barriles-cerveza-barril-aluminio_1398-2209.jpg"
-    },
-    {
-        id: 3,
-        nombre: "Chopera",
-        precio: 10000,
-        imagen: "./img/cerveza-barril-filtrada_140725-80.jpg"
-    },
-    {
-        id: 4,
-        nombre: "Lata",
-        precio: 200,
-        imagen: "./img/markus-spiske-GWWDglyNTik-unsplash.jpg"
-    }
-];
 
 let bolsadecompras = [];
-
 
 let productosGuardados = localStorage.getItem("productosbolsa");
 if (productosGuardados) {
@@ -34,6 +7,21 @@ if (productosGuardados) {
 }
 
 let carrito = document.getElementById("Productos");
+
+async function cargarProductos() {
+    try {
+        const response = await fetch('./json/materiales.json');
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos');
+        }
+        const data = await response.json();
+        productos(data);
+    } catch (error) {
+        console.error('Hubo un problema con la petición Fetch:', error);
+    } finally {
+        console.log('Intento de cargar productos finalizado');
+    }
+}
 
 function productos(arraydeproductos) {
     arraydeproductos.forEach(materiales => {
@@ -46,10 +34,10 @@ function productos(arraydeproductos) {
         `;
         carrito.appendChild(card);
     });
-    agregarAbolsa();
+    agregarAbolsa(arraydeproductos);
 }
+cargarProductos();
 
-productos(materiales);
 
 function agregarAbolsa() {
     let agregarboton = document.querySelectorAll(".agregarproducto");
