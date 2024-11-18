@@ -39,12 +39,12 @@ function productos(arraydeproductos) {
 cargarProductos();
 
 
-function agregarAbolsa() {
+function agregarAbolsa(arraydeproductos) {
     let agregarboton = document.querySelectorAll(".agregarproducto");
     agregarboton.forEach(button => {
         button.onclick = (e) => {
             const productoID = e.currentTarget.id;
-            const productoseleccionado = materiales.find(producto => producto.id == productoID);
+            const productoseleccionado = arraydeproductos.find(producto => producto.id == productoID);
 
 
             const existeEnCarrito = bolsadecompras.find(producto => producto.id === productoseleccionado.id);

@@ -100,10 +100,3 @@ if (!bolsaguardados) {
 }
 renderbolsa(bolsaguardados);
 
-
-document.getElementById("vaciar-carrito").addEventListener("click", () => {
-    bolsaguardados = [];
-    localStorage.removeItem("productosbolsa");
-    renderbolsa(bolsaguardados);
-    totalElement.textContent = 'Total: $0';
-});
